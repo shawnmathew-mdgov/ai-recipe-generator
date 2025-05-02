@@ -63,8 +63,8 @@ export class MainPage extends HTMLElement {
     e.preventDefault()
     const ingredients = this.loadIngredients()
     const { data, errors } = await this.#amplifyClient.queries.askBedRock({
-      // ingredients: [ingredients]
-      ingredients
+      ingredients: [...ingredients]
+      // ingredients
     })
 
     console.log(data, errors)

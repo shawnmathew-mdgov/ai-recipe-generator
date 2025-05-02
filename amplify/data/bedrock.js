@@ -45,7 +45,8 @@ export function request(ctx) {
             content: [
               {
                 type: 'text',
-                text: `${prompt}`
+                // text: `${prompt}`
+                text: `\n\nHuman:\n  ${prompt}\n\nAssistant:\n`
               }
             ]
           }
