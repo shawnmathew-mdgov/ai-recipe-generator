@@ -7,9 +7,6 @@ export function request(ctx) {
   // Return the request config
   return {
     resourcePath: `/model/anthropic.claude-3-7-sonnet-20250219-v1:0/invoke`,
-    contentType: "application/json",
-    accept: "application/json",
-    modelId: "anthropic.claude-3-7-sonnet-20250219-v1:0",
     // resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,    
     method: 'POST',
     params: {
@@ -45,8 +42,8 @@ export function request(ctx) {
             content: [
               {
                 type: 'text',
-                // text: `${prompt}`
-                text: `\n\nHuman:\n  ${prompt}\n\nAssistant:\n`
+                text: prompt
+                // text: `\n\nHuman:\n  ${prompt}\n\nAssistant:\n`
               }
             ]
           }
@@ -57,7 +54,6 @@ export function request(ctx) {
 }
 
 export function response(ctx) {
-  console.log(ctx)
   // Parse response body
   const parsedBody = JSON.parse(ctx.result.body)
 

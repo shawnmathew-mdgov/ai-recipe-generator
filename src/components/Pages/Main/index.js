@@ -55,7 +55,6 @@ export class MainPage extends HTMLElement {
     const form = this.querySelector('form')
     const formData = new FormData(form)
     const ingredients = formData.get('ingredients').split(',')
-    // const ingredients = formData.get('ingredients')
     return ingredients
   }
 
@@ -63,8 +62,7 @@ export class MainPage extends HTMLElement {
     e.preventDefault()
     const ingredients = this.loadIngredients()
     const { data, errors } = await this.#amplifyClient.queries.askBedRock({
-      ingredients: [...ingredients]
-      // ingredients
+      ingredients
     })
 
     console.log(data, errors)
