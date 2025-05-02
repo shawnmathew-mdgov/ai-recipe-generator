@@ -13,7 +13,7 @@ const schema = a.schema({
     .handler(a.handler.custom({
       entry: './bedrock.js',
       // dataSource: 'bedrockDS'
-      dataSource: 'BedRockDataSource'
+      dataSource: 'BedrockDataSource'
     }))
 })
 
