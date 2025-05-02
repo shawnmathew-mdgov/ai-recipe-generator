@@ -6,12 +6,29 @@ export function request(ctx) {
 
   // Return the request config
   return {
-    resourcePath: `/model/anthropic.claude-3-sonnet-20240229-v1:0/invoke`,
+    resourcePath: `/model/anthropic.claude-3-7-sonnet-20250219-v1:0/invoke`,
+    // resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,    
     method: 'POST',
     params: {
       headers: {
         'Content-Type': 'application/json'
-      },
+      },      
+      // body: JSON.stringify({
+      //   inferenceConfig: {
+      //     max_new_tokens: 1000
+      //   },
+      //   messages: [
+      //     {
+      //       role: 'user',
+      //       content: [
+      //         {
+      //           type: 'text',
+      //           text: `\n\nHuman: ${prompt}\n\nAssistant:`
+      //         }
+      //       ]
+      //     }
+      //   ]
+      // })
       body: JSON.stringify({
         anthropic_version: 'bedrock-2023-05-31',
         max_tokens: 1000,
