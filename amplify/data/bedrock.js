@@ -40,8 +40,9 @@ const novaRequest = {
       {
         "role": "user",
         "content": [
-          {
-            "text": "Why is the sky blue?"
+          { 
+            type: 'text',
+            text: "Why is the sky blue?"
           }
         ]
       }
