@@ -1,5 +1,3 @@
-import claudeRequest from './modelRequests/claude.js'
-
 export function request(ctx) {
   const { ingredients = [] } = ctx
 
