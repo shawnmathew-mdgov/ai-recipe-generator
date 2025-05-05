@@ -7,7 +7,7 @@ export function request(ctx) {
   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
 
   // Return the request config
-  return claudeRequest
+  return { ...claudeRequest }
 }
 
 export function response(ctx) {
