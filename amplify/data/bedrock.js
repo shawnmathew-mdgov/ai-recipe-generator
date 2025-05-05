@@ -42,7 +42,8 @@ export function request(ctx) {
             content: [
               {
                 type: 'text',
-                text: prompt
+                text: 'Why is the sky blue?'
+                // text: prompt
                 // text: `\n\nHuman:\n  ${prompt}\n\nAssistant:\n`
               }
             ]
