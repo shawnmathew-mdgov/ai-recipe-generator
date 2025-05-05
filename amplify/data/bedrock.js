@@ -1,33 +1,4 @@
-const claudeRequest = {
-  resourcePath: `/model/anthropic.claude-3-7-sonnet-20250219-v1:0/invoke`,    
-  method: 'POST',
-  params: {
-    headers: {
-      'Content-Type': 'application/json'
-    },    
-    body: JSON.stringify({        
-      anthropic_version: 'bedrock-2023-05-31',
-      max_tokens: 200,
-      top_k: 250,
-      stop_sequences: [],
-      temperature: 1,
-      top_p: 0.999,
-      messages: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'text',
-              text: 'Why is the sky blue?'
-            }
-          ]
-        }
-      ]
-    })
-  },
-}
-
-const novaRequest = {
+const novaRequest = prompt => ({
   resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
   method: 'POST',  
   params: {
@@ -43,14 +14,14 @@ const novaRequest = {
           "role": "user",
           "content": [
             { 
-              text: "Why is the sky blue?"
+              text: prompt
             }
           ]
         }
       ]
     })
   }  
-}
+})
 
 export function request(ctx) {
   const { ingredients = [] } = ctx
@@ -59,7 +30,7 @@ export function request(ctx) {
   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
 
   // Return the request config
-  return novaRequest
+  return novaRequest(prompt)
 }
 
 export function response(ctx) {
@@ -69,7 +40,6 @@ export function response(ctx) {
   // Extract the text content from response
   const res = {
     body: parsedBody.output.message.content[0].text
-    // body: ctx
   }
 
   return res
