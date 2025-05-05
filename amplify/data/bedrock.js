@@ -29,8 +29,8 @@ const claudeRequest = {
 
 const novaRequest = {
   resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
-  method: 'POST',
-  contentType: "application/json",
+  method: 'POST',  
+  'Content-Type': "application/json",
   accept: "application/json",
   body: {
     "inferenceConfig": {
