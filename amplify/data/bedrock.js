@@ -70,8 +70,8 @@ export function response(ctx) {
 
   // Extract the text content from response
   const res = {
-    body: parsedBody.content[0].text
-    // body: parsedBody
+    // body: parsedBody.content[0].text
+    body: ctx
   }
 
   return res
