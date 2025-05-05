@@ -11,11 +11,9 @@ const schema = a.schema({
     .returns(a.ref('BedrockResponse'))
     .authorization((allow) => [allow.authenticated()])
     .handler(a.handler.custom({
-      // entry: './bedrock.js',
-      entry: './claude.js',
-      
-      // dataSource: 'bedrockDS'
+      entry: './bedrock.js',      
       dataSource: 'BedrockDataSource'
+      // dataSource: 'bedrockDS'
     }))
 })
 
