@@ -65,13 +65,13 @@ export function request(ctx) {
 
 export function response(ctx) {
   // Parse response body
-  // const parsedBody = JSON.parse(ctx.result.body)
-  const parsedBody = JSON.parse(ctx)
+  const parsedBody = JSON.parse(ctx.result.body)
+  // const parsedBody = JSON.parse(ctx)
 
   // Extract the text content from response
   const res = {
-    // body: parsedBody.content[0].text
-    body: parsedBody
+    body: parsedBody.content[0].text
+    // body: parsedBody
   }
 
   return res
