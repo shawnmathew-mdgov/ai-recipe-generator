@@ -28,6 +28,7 @@ const claudeRequest = {
 }
 
 const novaRequest = {
+  resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
   "modelId": "amazon.nova-lite-v1:0",
   "contentType": "application/json",
   "accept": "application/json",
