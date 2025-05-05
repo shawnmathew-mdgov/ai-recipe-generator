@@ -30,23 +30,27 @@ const claudeRequest = {
 const novaRequest = {
   resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
   method: 'POST',  
-  accept: "application/json",
-  body: {
-    "inferenceConfig": {
-      "max_new_tokens": 1000
+  params: {
+    headers: {
+      'Content-Type': 'application/json'
     },
-    "messages": [
-      {
-        "role": "user",
-        "content": [
-          { 
-            type: 'text',
-            text: "Why is the sky blue?"
-          }
-        ]
-      }
-    ]
-  }
+    body: JSON.stringify({
+      "inferenceConfig": {
+        "max_new_tokens": 1000
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            { 
+              type: 'text',
+              text: "Why is the sky blue?"
+            }
+          ]
+        }
+      ]
+    })
+  }  
 }
 
 export function request(ctx) {
