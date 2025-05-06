@@ -56,7 +56,7 @@ export class MainPage extends HTMLElement {
     super()
   }
 
-  setResponseState(data, errors) {
+  setResponseState(data, error) {
     this.#response = {
       data,
       error
@@ -91,7 +91,8 @@ export class MainPage extends HTMLElement {
     const { data: responseData } = await this.#amplifyClient.queries.askBedRock({
       ingredients
     })
-    const { body: responseText, error } = responseData.askBedRock
+    console.log(responseData)
+    const { body: responseText, error } = responseData
     this.setResponseState(responseText, error)
     this.loadResponse()
   }  

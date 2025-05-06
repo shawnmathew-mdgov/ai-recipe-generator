@@ -23,7 +23,7 @@ const novaRequest = prompt => ({
   }  
 })
 
-export function request(ctx) {
+export function request(event, ctx) {
   const { ingredients = [] } = ctx.args
 
   // Construct the prompt with the provided ingredients
