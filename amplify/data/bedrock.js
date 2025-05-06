@@ -26,7 +26,8 @@ const novaRequest = (prompt) => ({
 })
 
 export function request(ctx) {
-  const { ingredients = [] } = ctx.args
+  // const { ingredients = [] } = ctx.args
+  const { ingredients = [] } = ctx
 
   // Construct the prompt with the provided ingredients
   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
