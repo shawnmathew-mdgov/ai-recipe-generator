@@ -1,4 +1,6 @@
-const novaRequest = prompt => ({
+const https = require('https')
+
+const novaRequest = async (prompt) => https.request({
   resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
   method: 'POST',  
   params: {
@@ -23,7 +25,7 @@ const novaRequest = prompt => ({
   }  
 })
 
-// export function request(event, ctx) {
+// export function request(ctx) {
 //   const { ingredients = [] } = ctx.args
 
 //   // Construct the prompt with the provided ingredients
@@ -45,13 +47,13 @@ const novaRequest = prompt => ({
 //   return res
 // }
 
-export const handler = (event) => {
+export const handler = async (event) => {
   const { ingredients = [] } = event
   
   try {
     // Construct the prompt with the provided ingredients
     const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
-    const res = novaRequest(prompt)
+    const res = await novaRequest(prompt)
     
     // Return the request config
     return res
