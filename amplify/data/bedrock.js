@@ -1,6 +1,6 @@
-const https = require('https')
+// const https = require('https')
 
-const novaRequest = async (prompt) => https.request({
+const novaRequest = (prompt) => ({
   resourcePath: `/model/amazon.nova-lite-v1:0/invoke`,
   method: 'POST',  
   params: {
@@ -25,39 +25,39 @@ const novaRequest = async (prompt) => https.request({
   }  
 })
 
-// export function request(ctx) {
-//   const { ingredients = [] } = ctx.args
+export function request(ctx) {
+  const { ingredients = [] } = ctx.args
 
-//   // Construct the prompt with the provided ingredients
-//   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
+  // Construct the prompt with the provided ingredients
+  const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
 
-//   // Return the request config
-//   return novaRequest(prompt)
-// }
-
-// export function response(ctx) {
-//   // Parse response body
-//   const parsedBody = JSON.parse(ctx.result.body)
-
-//   // Extract the text content from response
-//   const res = {
-//     body: parsedBody.output.message.content[0].text
-//   }
-
-//   return res
-// }
-
-export const handler = async (event) => {
-  const { ingredients = [] } = event
-  
-  try {
-    // Construct the prompt with the provided ingredients
-    const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
-    const res = await novaRequest(prompt)
-    
-    // Return the request config
-    return res
-  } catch(error) {
-    return error
-  }
+  // Return the request config
+  return novaRequest(prompt)
 }
+
+export function response(ctx) {
+  // Parse response body
+  const parsedBody = JSON.parse(ctx.result.body)
+
+  // Extract the text content from response
+  const res = {
+    body: parsedBody.output.message.content[0].text
+  }
+
+  return res
+}
+
+// export const handler = async (event) => {
+//   const { ingredients = [] } = event
+  
+//   try {
+//     // Construct the prompt with the provided ingredients
+//     const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
+//     const res = await novaRequest(prompt)
+    
+//     // Return the request config
+//     return res
+//   } catch(error) {
+//     return error
+//   }
+// }
