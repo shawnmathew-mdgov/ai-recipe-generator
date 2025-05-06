@@ -23,24 +23,39 @@ const novaRequest = prompt => ({
   }  
 })
 
-export function request(event, ctx) {
-  const { ingredients = [] } = ctx.args
+// export function request(event, ctx) {
+//   const { ingredients = [] } = ctx.args
 
-  // Construct the prompt with the provided ingredients
-  const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
+//   // Construct the prompt with the provided ingredients
+//   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
 
-  // Return the request config
-  return novaRequest(prompt)
-}
+//   // Return the request config
+//   return novaRequest(prompt)
+// }
 
-export function response(ctx) {
-  // Parse response body
-  const parsedBody = JSON.parse(ctx.result.body)
+// export function response(ctx) {
+//   // Parse response body
+//   const parsedBody = JSON.parse(ctx.result.body)
 
-  // Extract the text content from response
-  const res = {
-    body: parsedBody.output.message.content[0].text
+//   // Extract the text content from response
+//   const res = {
+//     body: parsedBody.output.message.content[0].text
+//   }
+
+//   return res
+// }
+
+export const handler = (event) => {
+  const { ingredients = [] } = event
+  
+  try {
+    // Construct the prompt with the provided ingredients
+    const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
+    const res = novaRequest(prompt)
+    
+    // Return the request config
+    return res
+  } catch(error) {
+    return error
   }
-
-  return res
 }
