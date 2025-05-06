@@ -88,7 +88,11 @@ export class MainPage extends HTMLElement {
   async handleSubmit(e) {
     e.preventDefault()
     const ingredients = this.loadIngredients()
-    const { data: responseData } = await this.#amplifyClient.queries.askBedRock({
+    // const { data: responseData } = await this.#amplifyClient.queries.askBedRock({
+    //   ingredients
+    // })
+    // console.log(responseData)
+    const responseData = await this.#amplifyClient.queries.askBedRock({
       ingredients
     })
     console.log(responseData)

@@ -33,7 +33,8 @@ export function request(ctx) {
   const prompt = `Suggest a recipe idea using these ingredients ${ingredients.join(', ')}`
 
   // Return the request config
-  return novaRequest(prompt)
+  // return novaRequest(prompt)
+  return ctx
 }
 
 export function response(ctx) {
@@ -45,7 +46,8 @@ export function response(ctx) {
     body: parsedBody.output.message.content[0].text
   }
 
-  return res
+  // return res
+  return ctx
 }
 
 // export const handler = async (event) => {
