@@ -47,8 +47,27 @@ export class MainPage extends HTMLElement {
     authMode: 'userPool'
   })
 
+  #response = {
+    data: null,
+    error: null,    
+  }
+
   constructor() {
     super()
+  }
+
+  setResponseState(data, errors) {
+    this.#response = {
+      data,
+      error
+    }
+  }
+
+  resetResponseState() {
+    this.#response = {
+      data: null,
+      error: null,    
+    }
   }
 
   loadIngredients() {
@@ -57,16 +76,25 @@ export class MainPage extends HTMLElement {
     const ingredients = formData.get('ingredients').split(',')
     return ingredients
   }
+  
+  loadResponse() {
+    const resultContainer = this.querySelector('.result-container')
+    const p = document.createElement('p')
+    const { data, error } = this.#response
+    p.textContent = error ? error : data
+    resultContainer.appendChild(p)
+  }
 
   async handleSubmit(e) {
     e.preventDefault()
     const ingredients = this.loadIngredients()
-    const { data, errors } = await this.#amplifyClient.queries.askBedRock({
+    const { data: responseData } = await this.#amplifyClient.queries.askBedRock({
       ingredients
     })
-
-    console.log(data, errors)
-  }
+    const { body: responseText, error } = responseData.askBedRock
+    this.setResponseState(responseText, error)
+    this.loadResponse()
+  }  
 
   connectedCallback() {
     const content = template.content.cloneNode(true)
